@@ -14,40 +14,14 @@ const App = () => {
       .then((json) => console.log(json));
   }, []);
 
-  const createHeaders = (keys) => {
-    var result = [];
-    for (var i = 0; i < keys.length; i += 1) {
-      result.push({
-        id: keys[i],
-        name: keys[i],
-        prompt: keys[i],
-        padding: 0,
-      });
-    }
-    return result;
-  };
-
   const exportPdf = async () => {
-    var headers = createHeaders([
-      "id",
-      "title",
-      "brand",
-      "category",
-      "price",
-      "rating",
-    ]);
-
-    // Default export is a4 paper, portrait, using millimeters for units
     const doc = new jsPDF({ orientation: "landscape" });
-
-    // const tableData = createTableData(doc);
-    // doc.table(1, 1, tableData, headers, { autoSize: true });
 
     doc.autoTable({
       html: "#my-table",
     });
 
-    doc.save("a4.pdf");
+    doc.save("mypdf.pdf");
   };
 
   return (
